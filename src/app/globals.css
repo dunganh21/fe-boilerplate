@@ -1,26 +1,39 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  /* Only define the specific colors used in Figma */
+  --color-primary: #154e43;
+  --color-primary-dark: #153e36;
+  --color-accent: #e6d8ba;
+  --color-background: #f4eee4;
+
+  /* Typography - only define what's different from Tailwind defaults */
+  --font-family-display: 'SVN-Optima', serif;
+  --font-family-body: 'Libre Franklin', sans-serif;
+
+  /* Spacing - only custom values */
+  --spacing-section: 120px;
+  --spacing-container: 184px;
+
+  /* Border radius - only custom values */
+  --radius-button: 12px;
+  --radius-card: 8px;
+}
+
+/* Root typography defaults */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  font-family: var(--font-family-body);
+  font-weight: 400;
+  line-height: 1.5;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Dark mode overrides */
+.dark {
+  --color-primary: #154e43;
+  --color-primary-dark: #153e36;
+  --color-accent: #e6d8ba;
+  --color-background: #112724;
 }

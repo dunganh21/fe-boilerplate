@@ -1,0 +1,70 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# 🎯 Figma to Code Guideline
+
+## Goal  
+Convert Figma design into clean, scalable, and responsive frontend code using Tailwind CSS and [shadcn/ui](https://ui.shadcn.dev).
+
+---
+
+## ✅ Workflow
+
+### 1. Analyze the Design
+- Identify layout structure: sections, grids, containers
+- Extract reusable components: Button, Card, Input, etc.
+
+### 2. Create Design Tokens
+- Define tokens in `tokens.ts` or Tailwind config:
+  - Colors (primary, background, text, etc.)
+  - Font sizes and font weights
+  - Spacing scale (margin, padding)
+  - Border radius, shadows, etc.
+
+### 3. Component Decomposition
+- Organize components:
+  - `components/ui`: Base UI (from Shadcn)
+  - `components/layout`: Headers, Footers, Wrappers
+  - `components/sections`: Page-level sections
+- Components should accept:
+  - `variant`, `size`, `className`, `children`
+- Use functional components with clear, typed props
+
+### 4. Write Maintainable Code
+- Avoid inline styles unless necessary
+- Use `clsx` or `cn()` to handle conditional Tailwind classes
+- Remove unused code or values copied from Figma
+
+### 5. Responsive Design
+- Follow Tailwind’s mobile-first approach
+- Support breakpoints: `sm`, `md`, `lg`, `xl`, `2xl`
+- Use relative units (`rem`, `%`, `em`) over fixed `px`
+
+---
+
+## 🎨 Design Token Usage
+
+- **Always use design token values** (from Tailwind config or `tokens.ts`)
+- Do **not** use hardcoded values unless it's an exception
+- If a value is reused across the design but missing in tokens, **add it to tokens config**
+- Use tokenized Tailwind classes like `bg-primary-900`, `text-muted`, `rounded-lg`
+
+---
+
+## 🧩 Shadcn/UI Component Rules
+
+- Always use existing components from `shadcn/ui` if available
+- Use the **Shadcn MCP server** to browse and search for available components
+- Only customize if really necessary, and document the reason in the file
+- Avoid recreating components that already exist in the library
+
+---
+
+## 📌 General Notes
+
+- Keep component names aligned with Figma layer names (if applicable)
+- Prioritize accessibility (`aria-*`, semantic tags) — Shadcn already handles this well
+- Use `cn()` utility to combine Tailwind classes smartly
+- Write self-documenting, reusable code whenever possible

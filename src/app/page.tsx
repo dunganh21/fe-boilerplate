@@ -1,103 +1,139 @@
-import Image from "next/image";
+import Button from '@/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className='min-h-screen bg-gradient-to-br from-background via-background to-muted/20'>
+      <div className='container mx-auto px-4 py-16'>
+        {/* Header */}
+        <div className='text-center mb-16'>
+          <h1 className='text-4xl font-bold tracking-tight mb-4'>
+            Welcome to Your <span className='text-primary'>shadcn/ui</span>{' '}
+            Project
+          </h1>
+          <p className='text-xl text-muted-foreground max-w-2xl mx-auto'>
+            Your project is now fully configured with Tailwind CSS v4 and
+            shadcn/ui components. Start building beautiful, accessible
+            interfaces with ease.
+          </p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+        {/* Feature Cards */}
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16'>
+          <Card className='border-border/50 hover:border-border transition-colors'>
+            <CardHeader>
+              <CardTitle className='flex items-center gap-2'>
+                <div className='w-2 h-2 bg-primary rounded-full'></div>
+                Tailwind CSS v4
+              </CardTitle>
+              <CardDescription>
+                Latest version with improved performance and new features
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className='text-sm text-muted-foreground'>
+                Configured with CSS variables, dark mode support, and optimized
+                for modern development.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className='border-border/50 hover:border-border transition-colors'>
+            <CardHeader>
+              <CardTitle className='flex items-center gap-2'>
+                <div className='w-2 h-2 bg-primary rounded-full'></div>
+                shadcn/ui Components
+              </CardTitle>
+              <CardDescription>
+                Beautiful, accessible components built with Radix UI
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className='text-sm text-muted-foreground'>
+                Ready-to-use components with consistent design and full
+                customization control.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className='border-border/50 hover:border-border transition-colors'>
+            <CardHeader>
+              <CardTitle className='flex items-center gap-2'>
+                <div className='w-2 h-2 bg-primary rounded-full'></div>
+                TypeScript Ready
+              </CardTitle>
+              <CardDescription>
+                Full TypeScript support with path aliases configured
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <p className='text-sm text-muted-foreground'>
+                Type-safe development with proper IntelliSense and error
+                checking.
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Demo Section */}
+        <div className='text-center'>
+          <h2 className='text-2xl font-semibold mb-8'>Component Demo</h2>
+          <div className='flex flex-wrap gap-4 justify-center'>
+            <Button variant='primary'>Primary Button</Button>
+            <Button variant='secondary'>Secondary Button</Button>
+            <Button variant='outline'>Outline Button</Button>
+            <Button variant='ghost'>Ghost Button</Button>
+          </div>
+        </div>
+
+        {/* Quick Start Guide */}
+        <Card className='mt-16 max-w-4xl mx-auto'>
+          <CardHeader>
+            <CardTitle>Quick Start Guide</CardTitle>
+            <CardDescription>
+              Here's how to add more components and start building
+            </CardDescription>
+          </CardHeader>
+          <CardContent className='space-y-4'>
+            <div className='space-y-2'>
+              <h4 className='font-medium'>Add Components</h4>
+              <code className='block bg-muted px-3 py-2 rounded text-sm font-mono'>
+                npx shadcn@latest add card input button
+              </code>
+            </div>
+
+            <div className='space-y-2'>
+              <h4 className='font-medium'>Import Components</h4>
+              <code className='block bg-muted px-3 py-2 rounded text-sm font-mono'>
+                <span>
+                  import {'{'}Button{'}'} from '@/components/ui/button';
+                </span>
+              </code>
+            </div>
+
+            <div className='space-y-2'>
+              <h4 className='font-medium'>Available Components</h4>
+              <p className='text-sm text-muted-foreground'>
+                Check out all available components at{' '}
+                <a
+                  href='https://ui.shadcn.com/docs/components'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='text-primary hover:underline'
+                >
+                  ui.shadcn.com
+                </a>
+              </p>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }

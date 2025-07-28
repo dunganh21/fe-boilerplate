@@ -1,0 +1,88 @@
+# ✅ UI Testing Rule (Visual + MCP + Playwright Required)
+
+## 🎯 Purpose
+
+Ensure UI quality through visual checks, MCP analysis, and Playwright testing — to catch regressions early and validate component behavior accurately.
+
+---
+
+## 🧪 Testing Requirements
+
+> ✅ **Mandatory:**  
+> After completing **every features or components**, you **must** run a full test pass using:
+>
+> - ✅ Visual inspection in the browser
+> - ✅ Playwright MCP Server analysis
+> - ✅ Playwright test (manual or automated)
+
+---
+
+## 🔍 Testing Flow
+
+### 1. Open the Component in Browser
+
+- Navigate to the page or Storybook entry
+- Resize viewport to test responsiveness:
+  - Mobile
+  - Tablet
+  - Desktop
+- Interact with the component:
+  - Hover, focus, click
+  - State transitions (e.g. loading, disabled)
+
+---
+
+### 2. Use MCP Server to Inspect
+
+- Run MCP analysis on the component
+- Confirm the following:
+  - Correct use of Shadcn props (`variant`, `size`, `asChild`, etc.)
+  - Tailwind classnames are optimized and deduplicated
+  - Component structure aligns with design and naming conventions
+
+---
+
+### 3. Cross-check Against Design (Figma)
+
+- Compare spacing, color, typography, layout
+- Use Figma plugin or DevTools to measure pixel-perfect alignment
+- Validate consistency across similar components
+
+---
+
+### 4. Run Playwright Test (Manual or Scripted)
+
+- If automation script exists: run it and check pass/fail
+- If not: do manual check following interaction patterns:
+  - Keyboard navigation
+  - Click and focus state
+  - Modals, dropdowns, tabs toggle correctly
+
+---
+
+## ✅ Checklist for Validation
+
+- [ ] Typography matches design
+- [ ] Spacing and layout consistent with Figma
+- [ ] Responsive across all viewports
+- [ ] No visual regressions or broken UI
+- [ ] Components behave correctly (clicks, focus, navigation)
+- [ ] Passed MCP check (structure, props, classnames)
+- [ ] Tested via Playwright (manual or automated)
+
+---
+
+## 💡 Tips
+
+- Use DevTools to inspect `computed styles` and box model
+- Simulate `:hover`, `:focus-visible`, `:active` in browser
+- Prefer fixing styles directly in component, not through page overrides
+- If tokens feel off, fix the **token source**, don’t patch with raw values
+
+---
+
+## 📌 Notes
+
+- **No component is considered “done” until it passes visual check, MCP scan, and Playwright test**
+- Visual QA + MCP feedback is suitable during iteration
+- Playwright test is **required every 2 components/features** to prevent regressions and ensure UI
