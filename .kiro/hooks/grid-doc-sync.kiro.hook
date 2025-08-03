@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Grid Documentation Sync",
+  "description": "Automatically updates the grid-system.md documentation file whenever the grid-container.tsx component is modified to keep documentation in sync with implementation",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "src/components/layout/grid-container.tsx"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "The grid-container.tsx component has been updated. Please review the changes and update the docs/grid-system.md file to reflect any modifications to the GridContainer component's API, props, usage patterns, or implementation details. Ensure the documentation accurately describes the current component behavior and includes updated code examples if necessary."
+  }
+}

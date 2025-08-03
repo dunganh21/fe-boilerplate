@@ -9,15 +9,6 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 /**
- * Get CSS custom property value from design tokens
- */
-export function getTokenValue(token: string): string {
-  // This function can be used to get token values programmatically
-  // For now, we'll use Tailwind classes directly
-  return token;
-}
-
-/**
  * Create responsive class names
  */
 export function responsive(

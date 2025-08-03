@@ -13,7 +13,10 @@
         "browser_evaluate",
         "browser_evaluate",
         "browser_screenshot",
-        "browser_select"
+        "browser_select",
+        "browser_hover",
+        "browser_click_text",
+        "browser_hover_text"
       ]
     }
   }

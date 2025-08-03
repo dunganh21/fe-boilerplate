@@ -8,67 +8,74 @@ Ensure UI quality through visual checks, MCP analysis, and Playwright testing �
 
 ## 🧪 Testing Requirements
 
-> ✅ **Mandatory:**  
-> After completing **every features or components**, you **must** run a full test pass using:
+> ✅ **MANDATORY - NO EXCEPTIONS:**  
+> After completing **every feature or component**, you **MUST** run a full test pass using:
 >
-> - ✅ Visual inspection in the browser
-> - ✅ Playwright MCP Server analysis
-> - ✅ Playwright test (manual or automated)
+> - ✅ **Lint validation** - Run `npm run lint` to ensure code quality standards
+> - ✅ **shadcn MCP Server check** - Verify component exists and get proper implementation
+> - ✅ **Visual inspection** in the browser
+> - ✅ **Playwright MCP Server testing** - Required visual validation
+> - ✅ **Component behavior testing** (manual or automated)
 
 ---
 
 ## 🔍 Testing Flow
 
-### 1. Open the Component in Browser
+### 1. **FIRST: Check shadcn MCP Server**
 
-- Navigate to the page or Storybook entry
+- **ALWAYS** use shadcn MCP server to check if component exists
+- Get the proper shadcn/ui implementation and adapt to current project
+- Verify component props, variants, and usage patterns
+- Use existing components instead of creating custom ones
+
+---
+
+### 2. **Visual Inspection in Browser**
+
+- Navigate to the component test page
 - Resize viewport to test responsiveness:
-  - Mobile
-  - Tablet
-  - Desktop
+  - Mobile (320px-768px)
+  - Tablet (768px-1024px)
+  - Desktop (1024px+)
 - Interact with the component:
-  - Hover, focus, click
-  - State transitions (e.g. loading, disabled)
+  - Hover, focus, click states
+  - State transitions (loading, disabled, error)
+  - Form validation and feedback
 
 ---
 
-### 2. Use MCP Server to Inspect
+### 3. **MANDATORY: Playwright MCP Server Testing**
 
-- Run MCP analysis on the component
-- Confirm the following:
-  - Correct use of Shadcn props (`variant`, `size`, `asChild`, etc.)
-  - Tailwind classnames are optimized and deduplicated
-  - Component structure aligns with design and naming conventions
+- **REQUIRED** after every feature/component completion
+- Use Playwright MCP server for visual validation
+- Take screenshots and compare against expected behavior
+- Test interaction patterns and accessibility
+- Validate responsive behavior across viewports
 
 ---
 
-### 3. Cross-check Against Design (Figma)
+### 4. **Cross-check Against Design (Figma)**
 
 - Compare spacing, color, typography, layout
 - Use Figma plugin or DevTools to measure pixel-perfect alignment
 - Validate consistency across similar components
+- Ensure design tokens are properly applied
 
 ---
 
-### 4. Run Playwright Test (Manual or Scripted)
+## ✅ Mandatory Validation Checklist
 
-- If automation script exists: run it and check pass/fail
-- If not: do manual check following interaction patterns:
-  - Keyboard navigation
-  - Click and focus state
-  - Modals, dropdowns, tabs toggle correctly
-
----
-
-## ✅ Checklist for Validation
-
-- [ ] Typography matches design
+- [ ] **Build validation passed** - `npm run build` completes without errors
+- [ ] **Lint validation passed** - `npm run lint` shows no errors or warnings
+- [ ] **shadcn MCP Server check completed** - Verified existing component or got proper implementation
+- [ ] **Component leverages existing shadcn/ui** instead of custom implementation
+- [ ] **Playwright MCP Server testing passed** - Visual validation completed
+- [ ] Typography matches design tokens
 - [ ] Spacing and layout consistent with Figma
-- [ ] Responsive across all viewports
+- [ ] Responsive across all viewports (mobile, tablet, desktop)
 - [ ] No visual regressions or broken UI
-- [ ] Components behave correctly (clicks, focus, navigation)
-- [ ] Passed MCP check (structure, props, classnames)
-- [ ] Tested via Playwright (manual or automated)
+- [ ] Components behave correctly (clicks, focus, navigation, states)
+- [ ] Accessibility standards met (keyboard navigation, ARIA labels)
 
 ---
 

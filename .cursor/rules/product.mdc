@@ -1,3 +1,9 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+
 # Product Overview
 
 FE Template is a modern Next.js frontend template designed for building beautiful, accessible web applications. It provides a solid foundation with Tailwind CSS v4 and shadcn/ui components.
@@ -82,23 +88,7 @@ Convert Figma design into clean, scalable, and responsive frontend code using Ta
 
 - **NEVER use hardcoded color values** like `text-[#E6D8BA]`, `bg-[#112724]`, etc.
 - **ALWAYS use design token classes** from the defined token system
-- **MANDATORY**: Use only these approved color classes:
-  - `text-accent` instead of `text-[#E6D8BA]`
-  - `bg-accent` instead of `bg-[#E6D8BA]`
-  - `text-primary` instead of `text-[#154e43]`
-  - `bg-primary` instead of `bg-[#154e43]`
-  - `bg-background` instead of `bg-[#f4eee4]`
-  - `bg-primary-dark` instead of `bg-[#153e36]`
-
-### Available Design Tokens (from globals.css @theme)
-
-```css
---color-primary: #154e43        → bg-primary, text-primary
---color-primary-dark: #153e36   → bg-primary-dark, text-primary-dark
---color-accent: #e6d8ba         → bg-accent, text-accent
---color-background: #f4eee4     → bg-background
---color-footer: #112724         → bg-footer (dark footer background)
-```
+- **Priority using layout flexible**, consider when using hard code with dimension like `w-[32p]`
 
 ### Token Usage Rules
 
@@ -125,52 +115,3 @@ Convert Figma design into clean, scalable, and responsive frontend code using Ta
 - Write self-documenting, reusable code
 - Maintain consistency with existing codebase patterns
 - Test components thoroughly following the testing guidelines
-
-## 🏗️ Grid System Requirements
-
-### ⚠️ CRITICAL RULE: ALWAYS USE THE GRID SYSTEM
-
-- **MANDATORY**: Use `GridContainer`, `Grid`, and `GridItem` components for all layouts
-- **NEVER use hardcoded dimensions** like `w-[400px]`, `h-[600px]`, `max-w-[1200px]`
-- **ALWAYS use responsive grid spans** instead of fixed widths
-- **If tests don't match design, double-check grid system implementation first**
-
-### Grid System Rules
-
-```tsx
-// ✅ CORRECT - Use grid system
-<GridContainer>
-  <Grid className="items-center">
-    <GridItem span={8}>{/* Main content */}</GridItem>
-    <GridItem span={4}>{/* Sidebar */}</GridItem>
-  </Grid>
-</GridContainer>
-
-// ❌ WRONG - Hardcoded dimensions
-<div className="max-w-[1200px] w-full">
-  <div className="w-[800px] h-[400px]">Content</div>
-</div>
-```
-
-### Responsive Design with Grid
-
-- **Desktop**: 12-column grid (100px columns, 32px gutters)
-- **Tablet**: 6-column grid (16px gutters)
-- **Mobile**: 4-column grid (12px gutters)
-- Use `GridItem span={X}` for responsive column spanning
-- Avoid `w-full`, `max-w-*` classes - let grid handle sizing
-
-### Dimension Guidelines
-
-- **Use relative units**: `rem`, `em`, `%`, `vh`, `vw`
-- **Use grid spans**: `span={8}` instead of `w-2/3`
-- **Use Tailwind spacing**: `p-4`, `m-8`, `gap-6` instead of pixel values
-- **Use aspect ratios**: `aspect-video`, `aspect-square` for media
-- **Use min/max heights**: `min-h-screen`, `max-h-96` for containers
-
-### Testing Grid Implementation
-
-- Always verify layouts match Figma grid specifications
-- Test responsive behavior across all breakpoints
-- Use grid demo page (`/component-test/grid-demo`) for validation
-- If design doesn't match, check grid system implementation before adjusting components

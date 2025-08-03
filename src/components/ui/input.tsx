@@ -1,34 +1,91 @@
 import * as React from 'react';
-
 import { cn } from '@/lib/utils';
+import { Typography } from './typography';
 
-export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {}
+interface FormInputFieldProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {
+  label: string;
+  wrapperClassName?: string;
+  labelClassName?: string;
+  inputClassName?: string;
+  dividerClassName?: string;
+  labelWidthClassName?: string;
+  required?: boolean;
+}
 
-const Input = React.forwardRef<HTMLInputElement, InputProps>(
-  ({ className, type, ...props }, ref) => {
-    return (
-      <input
-        type={type}
-        data-slot='input'
-        className={cn(
-          'file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input flex h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm',
-          'focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]',
-          'aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive',
-          // Custom project styling using design tokens
-          'border-neutral-200 dark:border-neutral-700',
-          'bg-background text-foreground',
-          'placeholder:text-neutral-500 dark:placeholder:text-neutral-400',
-          'focus-visible:border-primary focus-visible:ring-primary/20',
-          'disabled:bg-neutral-50 dark:disabled:bg-neutral-800',
-          className
-        )}
-        ref={ref}
-        {...props}
-      />
-    );
-  }
-);
-Input.displayName = 'Input';
+export const Divider = () => {
+  return <div className='h-px bg-primary-dark opacity-15 w-full' />;
+};
 
-export { Input };
+export const Label = ({
+  label,
+  required,
+  labelWidthClassName,
+  labelClassName,
+}: {
+  label: string;
+  required: boolean;
+  labelWidthClassName?: string;
+  labelClassName?: string;
+}) => {
+  return (
+    <Typography
+      asLabel
+      required={required}
+      variant='body'
+      className={cn(
+        'text-text-subdued opacity-50 flex-shrink-0',
+        labelWidthClassName,
+        labelClassName
+      )}
+    >
+      {label}
+    </Typography>
+  );
+};
+
+export function FormInputField({
+  label,
+  type = 'text',
+  value,
+  onChange,
+  placeholder,
+  wrapperClassName,
+  labelClassName = 'w-[200px]',
+  inputClassName,
+  dividerClassName,
+  labelWidthClassName,
+  required = false,
+  ...props
+}: FormInputFieldProps) {
+  return (
+    <div className={cn('mb-14', wrapperClassName)}>
+      <div className='flex items-center gap-15 mb-4'>
+        <Typography
+          asLabel
+          required={required}
+          variant='body'
+          className={cn(
+            'opacity-50 flex-shrink-0',
+            labelWidthClassName,
+            labelClassName
+          )}
+        >
+          {label}
+        </Typography>
+        <input
+          type={type}
+          value={value}
+          onChange={onChange}
+          className={cn(
+            'text-lg leading-[28px] tracking-[-0.18px] font-body font-normal text-[#414141] outline-none focus:outline-none focus:ring-0 focus:border-none flex-1/2',
+            inputClassName
+          )}
+          required={required}
+          {...props}
+        />
+      </div>
+      <Divider />
+    </div>
+  );
+}

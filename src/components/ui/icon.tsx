@@ -1,13 +1,8 @@
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { cva, type VariantProps } from 'class-variance-authority';
-import {
-  Youtube,
-  Facebook,
-  MessageCircle,
-  Phone,
-  LucideIcon,
-} from 'lucide-react';
+import Image from 'next/image';
+import { LucideIcon } from 'lucide-react';
 
 const iconVariants = cva(
   'inline-flex items-center justify-center transition-colors',
@@ -18,8 +13,7 @@ const iconVariants = cva(
         ghost: 'hover:bg-accent hover:text-accent-foreground',
         outline:
           'border border-input bg-background hover:bg-accent hover:text-accent-foreground',
-        social:
-          'text-[#E6D8BA] opacity-70 hover:opacity-100 transition-opacity',
+        social: 'text-accent opacity-70 hover:opacity-100 transition-opacity',
       },
       size: {
         default: 'h-6 w-6',
@@ -36,54 +30,94 @@ const iconVariants = cva(
   }
 );
 
-// Icon mapping for social media and common icons
-const iconMap = {
-  youtube: Youtube,
-  facebook: Facebook,
-  messenger: MessageCircle,
-  viber: Phone, // Using Phone as Viber alternative since Lucide doesn't have Viber
+// SVG icon mapping for custom icons from Figma
+const svgIconMap = {
+  youtube: '/icons/youtube.svg',
+  facebook: '/icons/facebook.svg',
+  messenger: '/icons/messenger.svg',
+  viber: '/icons/viber.svg',
 } as const;
 
 export interface IconProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof iconVariants> {
-  name?: keyof typeof iconMap;
+  name?: keyof typeof svgIconMap;
   icon?: LucideIcon;
+  src?: string;
+  alt?: string;
   asChild?: boolean;
 }
 
 const Icon = React.forwardRef<HTMLDivElement, IconProps>(
   (
-    { className, variant, size, name, icon, asChild = false, ...props },
+    {
+      className,
+      variant,
+      size,
+      name,
+      icon,
+      src,
+      alt,
+      asChild = false,
+      ...props
+    },
     ref
   ) => {
     // Determine which icon to render
-    const IconComponent = icon || (name ? iconMap[name] : null);
+    const svgSrc = src || (name ? svgIconMap[name] : null);
+    const IconComponent = icon;
 
-    if (!IconComponent) {
-      console.warn(`Icon "${name}" not found in iconMap`);
-      return null;
+    // Render custom SVG icon
+    if (svgSrc) {
+      const iconElement = (
+        <Image
+          src={svgSrc}
+          alt={alt || name || 'icon'}
+          width={28}
+          height={28}
+          className='h-full w-full object-contain'
+        />
+      );
+
+      if (asChild) {
+        return iconElement;
+      }
+
+      return (
+        <div
+          className={cn(iconVariants({ variant, size, className }))}
+          ref={ref}
+          {...props}
+        >
+          {iconElement}
+        </div>
+      );
     }
 
-    const Comp = asChild ? React.Fragment : 'div';
-    const iconElement = <IconComponent className='h-full w-full' />;
+    // Render Lucide icon
+    if (IconComponent) {
+      const iconElement = <IconComponent className='h-full w-full' />;
 
-    if (asChild) {
-      return iconElement;
+      if (asChild) {
+        return iconElement;
+      }
+
+      return (
+        <div
+          className={cn(iconVariants({ variant, size, className }))}
+          ref={ref}
+          {...props}
+        >
+          {iconElement}
+        </div>
+      );
     }
 
-    return (
-      <Comp
-        className={cn(iconVariants({ variant, size, className }))}
-        ref={ref}
-        {...props}
-      >
-        {iconElement}
-      </Comp>
-    );
+    console.warn(`Icon "${name}" not found and no icon component provided`);
+    return null;
   }
 );
 
 Icon.displayName = 'Icon';
 
-export { Icon, iconVariants, iconMap };
+export { Icon, iconVariants, svgIconMap };

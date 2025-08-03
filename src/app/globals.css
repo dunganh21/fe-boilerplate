@@ -1,26 +1,48 @@
+/* Font imports - must be at the top */
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  /* Only define the specific colors used in Figma */
+  /* Colors - Only define the specific colors used in Figma */
   --color-primary: #154e43;
   --color-primary-dark: #153e36;
+  --color-secondary: #004e2e;
   --color-accent: #e6d8ba;
   --color-background: #f4eee4;
+  --color-text-light: #ffffff;
+  --color-text: #495957;
+  --color-text-subdued: #4d4d4d;
+  --color-footer: #112724;
 
-  /* Typography - only define what's different from Tailwind defaults */
-  --font-family-display: 'SVN-Optima', serif;
+  /* Typography - Font families */
+  --font-family-display: 'SVN-Optima', 'Optima', 'Times New Roman', serif;
   --font-family-body: 'Libre Franklin', sans-serif;
 
-  /* Spacing - only custom values */
+  /* Spacing - Custom values */
   --spacing-section: 120px;
   --spacing-container: 184px;
 
-  /* Border radius - only custom values */
+  /* Border radius - Custom values */
   --radius-button: 12px;
   --radius-card: 8px;
+
+  /* Grid System - Using Tailwind v4 with max-width constraints */
+  /* --grid-columns: 12;
+  --grid-column-max-width: 100px;
+  --grid-gutter: 32px;
+  --grid-container-padding: 24px; */
+
+  /* Max width utilities */
+  --max-width-grid: calc(12 * 100px + 11 * 32px); /* 1552px total */
+
+  /* Gap utilities */
+  /* --gap-grid: var(--grid-gutter);
+  --gap-grid-mobile: 16px;
+  --gap-grid-small: 12px; */
 }
 
 /* Root typography defaults */
@@ -36,4 +58,5 @@
   --color-primary-dark: #153e36;
   --color-accent: #e6d8ba;
   --color-background: #112724;
+  --color-footer: #112724;
 }

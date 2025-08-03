@@ -8,8 +8,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      // Design tokens are now defined in CSS using @theme directive
-      // This config only contains non-token customizations
+      fontFamily: {
+        optima: ['SVN-Optima', 'serif'],
+        'libre-franklin': ['Libre Franklin', 'sans-serif'],
+      },
     },
   },
   plugins: [],
